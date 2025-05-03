@@ -612,9 +612,12 @@
         <!-- Image Section -->
         <div class="image-section">
           <div class="circle-bg"></div>
-          <img src="{{ $hero->profile_image && Storage::exists('public/hero_images/' . $hero->profile_image) ? url('storage/hero_images/' . $hero->profile_image) : '#' }}" 
+          <img 
+          src="{{ $hero && $hero->profile_image && Storage::exists('public/hero_images/' . $hero->profile_image) ? url('storage/hero_images/' . $hero->profile_image) : '#' }}" 
           onerror="this.style.display='none'" 
-          alt="{{ $hero->name }}" class="profile-image">
+          alt="{{ $hero->name ?? 'No Name' }}" 
+          class="profile-image">
+        
     <div class="btn-wrapper">
             
             <a href="#qualifications" class="btn btn-portfolio">

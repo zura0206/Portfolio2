@@ -324,9 +324,11 @@
                                     <!-- Image Preview -->
                                     <div class="relative">
                                         <div class="circle-bg-preview"></div>
-                                        <img src="{{ $hero->profile_image ? asset('storage/hero_images/' . $hero->profile_image) : asset('storage/images/MB.png') }}"
-                                             alt="{{ $hero->name }}"
-                                             class="relative z-10 w-48 h-48 object-cover rounded-lg shadow-lg">
+                                        <img 
+                                        src="{{ $hero && $hero->profile_image && Storage::exists('public/hero_images/' . $hero->profile_image) ? url('storage/hero_images/' . $hero->profile_image) : '#' }}" 
+                                        onerror="this.style.display='none'" 
+                                        alt="{{ $hero->name ?? 'No Name' }}" 
+                                        class="profile-image">
                                     </div>
                                 </div>
                             </div>

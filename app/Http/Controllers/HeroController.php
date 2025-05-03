@@ -25,7 +25,7 @@ class HeroController extends Controller
                 'clients_served' => 'required|string|max:50',
                 'experience_duration' => 'required|string|max:50',
                 'expertise_level' => 'required|string|max:50',
-                'profile_image' => 'required|image|mimes:jpeg,png|max:2048',
+                'profile_image' => 'required|image|mimes:jpeg,png',
             ]);
 
             // Process the image with native GD
@@ -133,7 +133,7 @@ class HeroController extends Controller
                 'clients_served' => 'required|string|max:50',
                 'experience_duration' => 'required|string|max:50',
                 'expertise_level' => 'required|string|max:50',
-                'profile_image' => 'nullable|image|mimes:jpeg,png|max:2048',
+                'profile_image' => 'nullable|image|mimes:jpeg,png',
             ]);
 
             if ($request->hasFile('profile_image')) {
@@ -275,7 +275,7 @@ class HeroController extends Controller
 //                 'clients_served' => 'required|string|max:50',
 //                 'experience_duration' => 'required|string|max:50',
 //                 'expertise_level' => 'required|string|max:50',
-//                 'profile_image' => 'required|image|max:2048',
+//                 'profile_image' => 'required|image',
 //             ]);
 
 //             $path = $request->file('profile_image')->store('hero_images', 'public');
@@ -304,7 +304,7 @@ class HeroController extends Controller
 //                 'clients_served' => 'required|string|max:50',
 //                 'experience_duration' => 'required|string|max:50',
 //                 'expertise_level' => 'required|string|max:50',
-//                 'profile_image' => 'nullable|image|max:2048',
+//                 'profile_image' => 'nullable|image',
 //             ]);
 
 //             if ($request->hasFile('profile_image')) {

@@ -612,13 +612,11 @@
         <!-- Image Section -->
         <div class="image-section">
           <div class="circle-bg"></div>
-          <img 
-          src="{{ $hero && $hero->profile_image && Storage::exists('public/hero_images/' . $hero->profile_image) ? url('storage/hero_images/' . $hero->profile_image) : '#' }}" 
-          onerror="this.style.display='none'" 
-          alt="{{ $hero->name ?? 'No Name' }}" 
-          class="profile-image">
-        
-    <div class="btn-wrapper">
+          <img src="{{ $hero && $hero->profile_image ? '/hero_images/' . $hero->profile_image : '/images/placeholder.jpg' }}" 
+               onerror="this.onerror=null; this.src='/images/placeholder.jpg'" 
+               alt="{{ $hero ? $hero->name : 'No hero' }}" 
+               class="profile-image">
+          <div class="btn-wrapper">
             
             <a href="#qualifications" class="btn btn-portfolio">
                Interested ? <span class="ml-1">→</span>

@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             HeroSeeder::class,
             SkillSeeder::class,
             AdminUserSeeder::class,
+            ProjectSeeder::class,
         ]);
     }
 }

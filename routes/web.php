@@ -2,6 +2,7 @@
 
 use App\Models\Hero;
 use App\Models\Skill;
+use App\Models\Project;
 use App\Models\Education;
 use App\Models\IvetVisit;
 use App\Models\IvetSummary;
@@ -12,6 +13,7 @@ use App\Http\Controllers\HeroController;
 use App\Http\Controllers\IvetController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\WorkExperienceController;
@@ -26,7 +28,8 @@ Route::get('/', function () {
     $educations = Education::orderBy('duration', 'desc')->get();
     $certifications = Certification::orderBy('cert_year', 'desc')->get();
     $hero = Hero::first();
-    return view('index', compact('skills', 'experiences', 'visits', 'summary', 'educations', 'certifications', 'hero'));
+    $projects = Project::all();
+        return view('index', compact('skills', 'experiences', 'projects', 'visits', 'summary', 'educations', 'certifications', 'hero'));
 })->name('index');
 
 
@@ -93,6 +96,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
     // IVET Routes
     Route::get('/ivet', [IvetController::class, 'adminIndex'])->name('admin.Aivet');
+    
     Route::post('/ivet', [IvetController::class, 'store']);
     Route::get('/ivet/{visit}/edit', [IvetController::class, 'edit']);
     Route::put('/ivet/{visit}', [IvetController::class, 'update']);
@@ -110,6 +114,17 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/hero/{hero}/edit', [HeroController::class, 'edit'])->name('admin.hero.edit');
     Route::put('/hero/{hero}', [HeroController::class, 'update'])->name('admin.hero.update');
     Route::delete('/hero/{hero}', [HeroController::class, 'destroy'])->name('admin.hero.destroy');
+
+    // projects
+    Route::get('/projects', function () {
+        $projects = Project::all();
+        return view('admin/Aproject', compact('projects'));
+
+    })->name('admin.Aproject');    Route::post('/projects', [ProjectController::class, 'store']);
+    Route::get('/projects/{id}/edit', [ProjectController::class, 'edit']);
+    Route::put('/projects/{id}', [ProjectController::class, 'update']);
+    Route::delete('/projects/{id}', [ProjectController::class, 'destroy']);
+
 });
 
 // Logout Route

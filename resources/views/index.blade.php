@@ -134,6 +134,7 @@
         @include('sections.hero')
         @include('sections.skills')
         @include('sections.wk')
+        @include('sections.project')
         @include('sections.edu_cert')
         @include('sections.ivet')
         @include('components.footer')

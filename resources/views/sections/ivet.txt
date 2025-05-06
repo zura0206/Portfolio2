@@ -1,0 +1,877 @@
+<style>
+/* Enhanced View More Button Styles */
+#industry-visits .view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    color: #dc2626;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#industry-visits .view-more-btn .btn-text {
+    margin-right: 0.5rem;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+#industry-visits .view-more-btn:hover .btn-text {
+    transform: translateX(5px);
+}
+
+#industry-visits .view-more-btn .arrow-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+#industry-visits .view-more-btn .arrow-line {
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #dc2626 0%, #f87171 100%);
+    transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    margin-right: 8px;
+    transform-origin: left center;
+}
+
+#industry-visits .view-more-btn .arrow-icon {
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center center;
+}
+
+#industry-visits .view-more-btn:hover .arrow-icon {
+    transform: translateX(3px) scale(1.1);
+    animation: pulse 1.5s infinite;
+}
+
+/* Clicked state animations */
+#industry-visits .view-more-btn.clicked {
+    animation: buttonClick 0.4s forwards;
+}
+
+#industry-visits .view-more-btn.clicked .arrow-line {
+    width: 120px;
+    background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%);
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+}
+
+#industry-visits .view-more-btn.clicked .arrow-icon {
+    transform: translateX(8px) scale(1.2);
+    color: #ef4444;
+}
+
+/* Underline effect */
+#industry-visits .view-more-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #dc2626;
+    transition: width 0.4s ease;
+}
+
+#industry-visits .view-more-btn:hover::after {
+    width: 100%;
+}
+
+/* Keyframe animations */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+@keyframes buttonClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Enhanced Sidebar Styles */
+#industry-visits .visit-sidebar-overlay {
+    background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
+    backdrop-filter: blur(5px);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#industry-visits .visit-sidebar {
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+#industry-visits .visit-sidebar-header {
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+/* Enhanced Close Button */
+#industry-visits .sidebar-close-btn {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#industry-visits .sidebar-close-btn:hover {
+    transform: rotate(180deg) scale(1.1);
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Enhanced Sidebar Content */
+#industry-visits .sidebar-content > * {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Gallery Item Hover Effects */
+#industry-visits .sidebar-gallery img {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#industry-visits .sidebar-gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+/* Back to Top Button */
+#industry-visits #back-to-top {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+#industry-visits #back-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(220, 38, 38, 0.4);
+}
+
+/* Summary Item Hover Effects */
+#industry-visits .summary-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#industry-visits .summary-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Visit Item Hover Effects */
+#industry-visits .visit-item {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#industry-visits .visit-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+#industry-visits .visit-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #industry-visits .view-more-btn.clicked .arrow-line {
+        width: 80px;
+    }
+    
+    #industry-visits .visit-sidebar {
+        width: 90%;
+        right: -90%;
+    }
+    
+    #industry-visits .visit-sidebar.active {
+        transform: translateX(-90%);
+    }
+}
+
+@media (max-width: 640px) {
+    #industry-visits .view-more-btn.clicked .arrow-line {
+        width: 60px;
+    }
+    
+    #industry-visits .visit-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    #industry-visits .visit-sidebar.active {
+        transform: translateX(-100%);
+    }
+}
+
+/* Floating Animation for Visit Items */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+#industry-visits .visit-item.visible {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Gradient Border Effect */
+#industry-visits .visit-item {
+    position: relative;
+    z-index: 1;
+}
+
+#industry-visits .visit-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, 
+                 linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+#industry-visits .visit-item:hover::before {
+    opacity: 1;
+}
+/* View More Button Styles */
+#industry-visits .view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #dc2626;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    overflow: hidden;
+}
+
+#industry-visits .view-more-btn .btn-text {
+    margin-right: 0.5rem;
+    white-space: nowrap;
+}
+
+#industry-visits .view-more-btn .arrow-container {
+    display: flex;
+    align-items: center;
+}
+
+#industry-visits .view-more-btn .arrow-line {
+    width: 0;
+    height: 2px;
+    background: #dc2626;
+    transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    margin-right: 8px;
+}
+
+#industry-visits .view-more-btn .arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+#industry-visits .view-more-btn:hover .arrow-icon {
+    transform: translateX(3px);
+}
+
+/* Clicked state */
+#industry-visits .view-more-btn.clicked .arrow-line {
+    width: 100px; /* Adjust this value for desired length */
+}
+
+#industry-visits .view-more-btn.clicked .arrow-icon {
+    transform: translateX(5px);
+}
+/* Sidebar Overlay */
+#industry-visits .visit-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+#industry-visits .visit-sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sidebar Panel */
+#industry-visits .visit-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+#industry-visits .visit-sidebar.active {
+    transform: translateX(0);
+}
+
+/* Sidebar Header */
+#industry-visits .visit-sidebar-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 5;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1.5rem 5% 1rem;
+    background-image: linear-gradient(to right, rgba(220, 38, 38, 0.05), rgba(220, 38, 38, 0.02));
+}
+
+/* Close Button */
+#industry-visits .sidebar-close-btn {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1001;
+    background-color: white;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#industry-visits .sidebar-close-btn:hover {
+    transform: rotate(90deg);
+    background-color: #f9fafb;
+}
+
+/* Sidebar Content Animation */
+#industry-visits .sidebar-content > * {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: 0.3s;
+}
+
+#industry-visits .visit-sidebar.active .sidebar-content > * {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Sidebar Image Focus */
+#industry-visits .sidebar-image-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+#industry-visits .sidebar-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+#industry-visits .sidebar-image:hover {
+    transform: scale(1.02);
+}
+
+#industry-visits .sidebar-location {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+    font-style: italic;
+}
+
+/* View More Button */
+#industry-visits .view-more-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+#industry-visits .view-more-btn svg {
+    transition: transform 0.3s ease;
+}
+
+#industry-visits .view-more-btn:hover svg {
+    transform: translateX(5px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #industry-visits .sidebar-image {
+        height: 250px;
+    }
+    
+    #industry-visits .visit-sidebar-header {
+        padding: 1rem 5% 1rem;
+    }
+    
+    #industry-visits .sidebar-close-btn {
+        top: 1rem;
+        right: 1rem;
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    #industry-visits .visit-item, 
+    #industry-visits .summary-item {
+        padding: 1.25rem;
+    }
+    
+    #industry-visits .sidebar-image {
+        height: 200px;
+    }
+}
+
+/* Body Scroll Lock */
+body.sidebar-open {
+    overflow: hidden;
+}
+</style>
+
+<section id="industry-visits" class="py-16 bg-gray-50">
+    <div class="container max-w-5xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-sm font-medium text-red-600 uppercase tracking-widest">Learning from the Industry</span>
+            <h2 class="text-5xl font-bold mt-3 text-gray-900">Industry Visit Experiences</h2>
+            <div class="w-20 h-1 bg-red-600 mx-auto mt-5"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            @foreach($visits as $index => $visit)
+                <div class="visit-item bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-64 overflow-hidden">
+                        <img src="{{ $visit->image_url ?? '/api/placeholder/800/500' }}" alt="{{ $visit->title }}" class="w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900">{{ $visit->title }}</h3>
+                            <span class="text-sm font-medium bg-gray-200 text-gray-700 py-1 px-3 rounded-full">{{ $visit->date }}</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-base">
+                            {{ \Illuminate\Support\Str::limit($visit->description, 150) }}
+                        </p>
+                        
+<button class="view-more-btn text-red-600 font-medium focus:outline-none" data-visit-index="{{ $index }}">
+    <span class="btn-text">View More Details</span>
+    <span class="arrow-container">
+        <span class="arrow-line"></span>
+        <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+    </span>
+</button>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        
+        @if($summary)
+        <div class="summary-item mt-16 bg-white rounded-xl shadow-md p-8">
+            <h3 class="text-3xl font-bold mb-6 text-gray-900">Overall Learning Impact</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 flex items-center text-gray-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-600 icon-hover" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        Professional Skills Development
+                    </h4>
+                    <p class="text-gray-600 mb-6 text-sm">
+                        {{ $summary->professional_skills }}
+                    </p>
+                    
+                    <h4 class="text-lg font-semibold mb-3 flex items-center text-gray-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-600 icon-hover" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Networking Opportunities
+                    </h4>
+                    <p class="text-gray-600 text-sm">
+                        {{ $summary->networking }}
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 flex items-center text-gray-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-600 icon-hover" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                        Industry Trend Awareness
+                    </h4>
+                    <p class="text-gray-600 mb-6 text-sm">
+                        {{ $summary->trend_awareness }}
+                    </p>
+                    
+                    <h4 class="text-lg font-semibold mb-3 flex items-center text-gray-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-600 icon-hover" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        Personal Growth
+                    </h4>
+                    <p class="text-gray-600 text-sm">
+                        {{ $summary->personal_growth }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endif
+    </div>
+    
+    <!-- Sidebar Overlay -->
+    <div class="visit-sidebar-overlay"></div>
+    
+    <!-- Sidebar Panel -->
+    <div class="visit-sidebar">
+        <div class="visit-sidebar-header">
+            <button class="sidebar-close-btn text-gray-500 hover:text-red-600" aria-label="Close sidebar">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center mb-2">
+                    <div class="h-6 w-1.5 bg-red-500 rounded-full mr-3"></div>
+                    <h2 class="text-4xl font-bold text-gray-900 sidebar-title"></h2>
+                </div>
+                
+                <div class="flex items-center text-sm text-gray-500 mb-4 ml-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span class="sidebar-date"></span>
+                    
+                    <span class="mx-2">•</span>
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span class="sidebar-company"></span>
+                </div>
+                
+                <div class="ml-4 flex items-center">
+                    <span class="inline-block px-3 py-1 text-xs font-medium bg-red-100 text-red-700 rounded-full mr-2 sidebar-visit-type">Industry Visit</span>
+                    <span class="inline-block px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full sidebar-duration">Full Day</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-content max-w-5xl mx-auto px-5 md:px-8 pb-24 pt-2">
+            <!-- Hero Image -->
+            <div class="rounded-xl overflow-hidden mb-12 sidebar-image-container">
+                <img class="w-full h-72 md:h-96 object-cover sidebar-image" src="" alt="">
+                <div class="image-caption px-4 py-2 bg-gradient-to-t from-black/70 to-transparent text-white text-sm italic absolute bottom-0 w-full sidebar-location">
+                    <!-- Location will be filled here -->
+                </div>
+            </div>
+            
+            <!-- Description -->
+            <div class="mb-12">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900">About This Visit</h3>
+                </div>
+                <div class="pl-13 ml-5 border-l-2 border-gray-100">
+                    <p class="text-gray-700 leading-relaxed text-lg sidebar-description"></p>
+                </div>
+            </div>
+            
+            <!-- Key Takeaways -->
+            <div class="mb-12">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900">Key Takeaways</h3>
+                </div>
+                <div class="pl-13 ml-5 border-l-2 border-gray-100">
+                    <ul class="space-y-4 sidebar-takeaways"></ul>
+                </div>
+            </div>
+            
+            <!-- Personal Reflection -->
+            <div class="mb-12">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900">Personal Reflection</h3>
+                </div>
+                <div class="pl-13 ml-5 border-l-2 border-gray-100">
+                    <div class="bg-gradient-to-r from-red-50 to-gray-50 p-8 rounded-lg border-l-4 border-red-500 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                        </svg>
+                        <p class="text-gray-700 italic text-lg leading-relaxed sidebar-reflection"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Photos Gallery (optional, placeholder) -->
+            <div class="mb-12 hidden sidebar-gallery-section">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900">Photo Gallery</h3>
+                </div>
+                <div class="pl-13 ml-5 border-l-2 border-gray-100">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sidebar-gallery">
+                        <!-- Gallery items will be inserted here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back to top button -->
+            <button id="back-to-top" class="fixed bottom-8 right-8 bg-red-500 text-white rounded-full p-3 shadow-lg opacity-0 invisible transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+// JavaScript Updates - Replace the click event handler for viewMoreBtns
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Animation for items appearing when scrolled into view
+    const sectionItems = document.querySelectorAll('#industry-visits .visit-item, #industry-visits .summary-item');
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150); // Stagger animation by 150ms per item
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.1 }
+    );
+    sectionItems.forEach((item) => observer.observe(item));
+    
+    // Setup for sidebar functionality
+    const sidebar = document.querySelector('#industry-visits .visit-sidebar');
+    const overlay = document.querySelector('#industry-visits .visit-sidebar-overlay');
+    const closeBtn = document.querySelector('#industry-visits .sidebar-close-btn');
+    const viewMoreBtns = document.querySelectorAll('#industry-visits .view-more-btn');
+    
+    // Handle all navigation menu clicks - close sidebar if it's open
+    const navLinks = document.querySelectorAll('.navbar a.menu-item');
+    
+    // Data for visits (convert from PHP to JS)
+    const visitsData = @json($visits);
+    
+    // Function to open sidebar with visit details
+    function openSidebar(visitIndex) {
+        const visit = visitsData[visitIndex];
+        
+        // Update sidebar content
+        document.querySelector('#industry-visits .sidebar-title').textContent = visit.title;
+        document.querySelector('#industry-visits .sidebar-date').textContent = visit.date;
+        document.querySelector('#industry-visits .sidebar-company').textContent = visit.company || '';
+        document.querySelector('#industry-visits .sidebar-image').src = visit.image_url || '/api/placeholder/800/500';
+        document.querySelector('#industry-visits .sidebar-image').alt = visit.title;
+        document.querySelector('#industry-visits .sidebar-description').textContent = visit.description;
+        document.querySelector('#industry-visits .sidebar-location').textContent = visit.location || 'Location: ' + (visit.company || 'Visit Location');
+        
+        // Set visit type and duration if available
+        if (visit.visit_type) {
+            document.querySelector('#industry-visits .sidebar-visit-type').textContent = visit.visit_type;
+        }
+        if (visit.duration) {
+            document.querySelector('#industry-visits .sidebar-duration').textContent = visit.duration;
+        }
+        
+        // Update takeaways list with enhanced styling
+        const takeawaysList = document.querySelector('#industry-visits .sidebar-takeaways');
+        takeawaysList.innerHTML = '';
+        visit.key_takeaways.forEach((takeaway, index) => {
+            const li = document.createElement('li');
+            li.className = 'flex items-start';
+            li.innerHTML = `
+                <div class="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span class="text-red-600 font-semibold">${index + 1}</span>
+                </div>
+                <div class="flex-grow">
+                    <p class="text-gray-800 leading-relaxed">${takeaway}</p>
+                </div>
+            `;
+            takeawaysList.appendChild(li);
+        });
+        
+        // Update reflection
+        document.querySelector('#industry-visits .sidebar-reflection').textContent = visit.reflection;
+        
+        // Show sidebar and overlay with animation
+        setTimeout(() => {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+            document.body.classList.add('sidebar-open');
+        }, 50); // Small delay to ensure smooth transition
+        
+        // If visit has gallery images, show them (optional feature)
+        const gallerySection = document.querySelector('#industry-visits .sidebar-gallery-section');
+        const galleryContainer = document.querySelector('#industry-visits .sidebar-gallery');
+        
+        if (visit.gallery && visit.gallery.length > 0) {
+            galleryContainer.innerHTML = '';
+            visit.gallery.forEach(image => {
+                const imgDiv = document.createElement('div');
+                imgDiv.className = 'rounded-lg overflow-hidden h-40';
+                
+                const img = document.createElement('img');
+                img.src = image.url || '/api/placeholder/400/300';
+                img.alt = image.caption || visit.title;
+                img.className = 'w-full h-full object-cover transition-transform duration-300 hover:scale-110';
+                
+                imgDiv.appendChild(img);
+                galleryContainer.appendChild(imgDiv);
+            });
+            gallerySection.classList.remove('hidden');
+        } else {
+            gallerySection.classList.add('hidden');
+        }
+    }
+    
+    // Function to close sidebar
+    function closeSidebar() {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('sidebar-open');
+    }
+    
+  viewMoreBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const visitIndex = this.getAttribute('data-visit-index');
+        
+        // Start the arrow stretching animation
+        this.classList.add('clicked');
+        
+        // Open sidebar after arrow fully stretches
+        setTimeout(() => {
+            openSidebar(visitIndex);
+            
+            // Reset button when sidebar closes
+            const resetButton = () => {
+                this.classList.remove('clicked');
+                overlay.removeEventListener('click', resetButton);
+                closeBtn.removeEventListener('click', resetButton);
+            };
+            
+            overlay.addEventListener('click', resetButton);
+            closeBtn.addEventListener('click', resetButton);
+        }, 400); // Match this duration with CSS transition
+    });
+});
+    
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+    
+    // Close sidebar with ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+            closeSidebar();
+        }
+    });
+    
+    // Close sidebar when clicking on navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // If sidebar is open, close it first
+            if (sidebar && sidebar.classList.contains('active')) {
+                e.preventDefault(); // Prevent default navigation temporarily
+                
+                // Close the sidebar
+                closeSidebar();
+                
+                // Get the target section ID
+                const targetId = link.getAttribute('href');
+                
+                // After sidebar closing animation completes, navigate to the section
+                setTimeout(() => {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // Update URL hash without adding to browser history
+                    if (history.pushState) {
+                        history.pushState(null, null, targetId);
+                    } else {
+                        location.hash = targetId;
+                    }
+                }, 400); // Match this with sidebar transition duration
+            }
+        });
+    });
+    
+    // Back to top button functionality
+    const backToTopButton = document.getElementById('back-to-top');
+    if (backToTopButton) {
+        sidebar.addEventListener('scroll', () => {
+            if (sidebar.scrollTop > 500) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            sidebar.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
+
+
+</script>
